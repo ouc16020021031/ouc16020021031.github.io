@@ -15,14 +15,17 @@
 
 
 
+<meta name="description" content="学了就忘">
 <meta property="og:type" content="website">
 <meta property="og:title" content="标签云">
 <meta property="og:url" content="https://ouc16020021031.github.io/tags/index.html">
 <meta property="og:site_name" content="小乔的博客">
+<meta property="og:description" content="学了就忘">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-19T04:32:47.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="标签云">
+<meta name="twitter:description" content="学了就忘">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -102,6 +105,8 @@
           <h1 class="header-author"><a href="/">小乔</a></h1>
         </hgroup>
 
+        
+        <p class="header-subtitle">学了就忘</p>
         
 
         
@@ -235,6 +240,8 @@
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">小乔</a></h1>
             </hgroup>
+            
+            <p class="header-subtitle">学了就忘</p>
             
             <nav class="header-menu">
                 <ul>
@@ -435,6 +442,7 @@
 
 
 <!--gitment 评论-->
+
   <div class="comments" id="comments">
   
 	<!--汉化-->
@@ -461,7 +469,7 @@
         var gitment = new Gitment({
 			  id: '标签云',
 			  title: '标签云',
-			  owner: '小乔',
+			  owner: 'ouc16020021031',
 			  repo: 'ouc16020021031.github.io',
 			  oauth: {
 				client_id: '331e2557e01d4fa077d0',
@@ -472,6 +480,7 @@
       </script>
     
   </div>
+
 <!--gitment 评论 end--></div>
       <footer id="footer">
     <div class="outer">
@@ -507,6 +516,8 @@
 </footer>
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -529,6 +540,27 @@
 
 
 
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
 <div class="scroll" id="scroll">
     <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
     <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
@@ -538,7 +570,7 @@
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -578,3 +610,4 @@
   </div>
 </body>
 </html>
+
