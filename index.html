@@ -280,6 +280,208 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-assignment4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/22/assignment4/" class="article-date">
+      <time datetime="2018-05-22T07:50:17.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/assignment4/">Gauss-Seidel迭代法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% findMax.m</span></span><br><span class="line"></span><br><span class="line">function  [max_index] <span class="built_in">=</span> findMax(Input_k,Row,k)  </span><br><span class="line"><span class="comment">%  inputs:  </span></span><br><span class="line"><span class="comment">%         Input_k:第k列的所有元素  </span></span><br><span class="line"><span class="comment">%         Row   :矩阵的总行数  </span></span><br><span class="line"><span class="comment">%         k      :第k列序号  </span></span><br><span class="line"><span class="comment">%  outputs:  </span></span><br><span class="line"><span class="comment">%         max_index:第k列从第k行以后最大元素的行下标  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">% 初始化参数  </span></span><br><span class="line">max_index <span class="built_in">=</span> k;  </span><br><span class="line">max_val <span class="built_in">=</span> abs(Input_k(k));</span><br><span class="line"></span><br><span class="line">for i <span class="built_in">=</span> k:Row</span><br><span class="line">    <span class="built_in">if</span> max_val &lt; abs(Input_k(i))</span><br><span class="line">        max_val <span class="built_in">=</span> abs(Input_k(i));  </span><br><span class="line">        max_index <span class="built_in">=</span> i;  </span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment4.m</span></span><br><span class="line"></span><br><span class="line">function [x] <span class="built_in">=</span> assignment4(A,b,x)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         A:系数矩阵，维度为n*n</span></span><br><span class="line"><span class="comment">%         b:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         x:未知量矩阵，维度n*1</span></span><br><span class="line"></span><br><span class="line">[A_row,A_col] <span class="built_in">=</span> size(A);</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> <span class="number">1</span>:A_col-<span class="number">1</span></span><br><span class="line">    max_index <span class="built_in">=</span> findMax(A(:,i1),A_row,i1);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">%如果最大值索引不是k，则交换第k行与max_index行</span></span><br><span class="line">    <span class="built_in">if</span> max_index ~<span class="built_in">=</span> i1</span><br><span class="line">        for i2 <span class="built_in">=</span> i1:A_col     <span class="comment">% 交换矩阵</span></span><br><span class="line">            temp <span class="built_in">=</span> A(max_index,i2);</span><br><span class="line">            A(max_index,i2) <span class="built_in">=</span> A(i1,i2);</span><br><span class="line">            A(i1,i2) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        temp_k <span class="built_in">=</span> b(i1);</span><br><span class="line">        b(i1) <span class="built_in">=</span> b(max_index);</span><br><span class="line">        b(max_index) <span class="built_in">=</span> temp_k;</span><br><span class="line">    end</span><br><span class="line">    <span class="comment">% 循环计算第k+1行到最后一行</span></span><br><span class="line">    </span><br><span class="line">    for i2 <span class="built_in">=</span> i1+<span class="number">1</span>:A_row</span><br><span class="line">        L_i1i2 <span class="built_in">=</span> A(i2,i1) / A(i1,i1); <span class="comment">%更新L_ik</span></span><br><span class="line">        <span class="comment">% 更新每一行从第i个元素开始后的所有元素</span></span><br><span class="line">        for j <span class="built_in">=</span> i1+<span class="number">1</span>:A_col</span><br><span class="line">            A(i2,j) <span class="built_in">=</span> A(i2,j) -  L_i1i2*A(i1,j); <span class="comment">% 更新a(i2,j)</span></span><br><span class="line">        end</span><br><span class="line">        b(i2) <span class="built_in">=</span> b(i2) - b(i1)*L_i1i2; <span class="comment">% 更新b(i2)</span></span><br><span class="line">        A(i2,<span class="number">1</span>) <span class="built_in">=</span> <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">x(A_row) <span class="built_in">=</span> b(A_row)/A(A_row,A_col);</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> A_row-<span class="number">1</span>:-<span class="number">1</span>:<span class="number">1</span></span><br><span class="line">    sum_temp <span class="built_in">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    for j <span class="built_in">=</span> i1+<span class="number">1</span>:A_col</span><br><span class="line">        sum_temp <span class="built_in">=</span> sum_temp + A(i1,j)*x(j);</span><br><span class="line">    end</span><br><span class="line">    x(i1) <span class="built_in">=</span> (b(i1) - sum_temp)/A(i1,i1);</span><br><span class="line">end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[0 0 0])</span></span><br><span class="line"><span class="comment">% assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[1 1 1])</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Calculation-Method/">Calculation Method</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning-homework/">learning, homework</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+<!--gitment 评论-->
+
+<!--gitment 评论 end-->
+  
+    <article id="post-assignment3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/22/assignment3/" class="article-date">
+      <time datetime="2018-05-22T07:47:37.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/assignment3/">列主元消去法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment3.m</span></span><br><span class="line"></span><br><span class="line">function [x] <span class="built_in">=</span> assignment3(A,b)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         A:系数矩阵，维度为n*n</span></span><br><span class="line"><span class="comment">%         b:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         x:未知量矩阵，维度n*1</span></span><br><span class="line"></span><br><span class="line">[A_row,A_col] <span class="built_in">=</span> size(A);</span><br><span class="line">x<span class="built_in">=</span>zeros(A_row,<span class="number">1</span>);</span><br><span class="line">x1_change<span class="built_in">=</span>[]; <span class="comment">% x1_change，x2_change记录x的位置变换</span></span><br><span class="line">x2_change<span class="built_in">=</span>[];</span><br><span class="line"></span><br><span class="line">for i1<span class="built_in">=</span><span class="number">1</span>:A_col-<span class="number">1</span> <span class="comment">%找出右下方矩阵中最大的系数</span></span><br><span class="line">    max_val<span class="built_in">=</span><span class="number">0</span>;</span><br><span class="line">    for i2<span class="built_in">=</span>i1:A_row</span><br><span class="line">        for i3<span class="built_in">=</span>i1:A_col</span><br><span class="line">        	<span class="built_in">if</span> max_val &lt; abs(A(i2,i3))</span><br><span class="line">                max_val <span class="built_in">=</span> abs(A(i2,i3));  </span><br><span class="line">                max_i <span class="built_in">=</span> i2;  </span><br><span class="line">                max_j <span class="built_in">=</span> i3;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">if</span> max_i ~<span class="built_in">=</span> i1 <span class="comment">% 行交换矩阵</span></span><br><span class="line">        for i2 <span class="built_in">=</span> i1:A_col</span><br><span class="line">            temp <span class="built_in">=</span> A(max_i,i2);</span><br><span class="line">            A(max_i,i2) <span class="built_in">=</span> A(i1,i2);</span><br><span class="line">            A(i1,i2) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        temp <span class="built_in">=</span> b(i1);</span><br><span class="line">        b(i1) <span class="built_in">=</span> b(max_i);</span><br><span class="line">        b(max_i) <span class="built_in">=</span> temp; </span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">if</span> max_j ~<span class="built_in">=</span> i1 <span class="comment">% 列交换矩阵</span></span><br><span class="line">        for i2 <span class="built_in">=</span> <span class="number">1</span>:A_col</span><br><span class="line">            temp <span class="built_in">=</span> A(i2,max_j);</span><br><span class="line">            A(i2,max_j) <span class="built_in">=</span> A(i2,i1);</span><br><span class="line">            A(i2,i1) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        x1_change <span class="built_in">=</span> [x1_change max_j]; <span class="comment">% 记录x的交换</span></span><br><span class="line">        x2_change <span class="built_in">=</span> [x2_change i1];</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">if</span> A(i1,i1) ~<span class="built_in">=</span> <span class="number">0</span> <span class="comment">% 消元</span></span><br><span class="line">        for i2 <span class="built_in">=</span> i1+<span class="number">1</span>:A_row</span><br><span class="line">            L_i1i2<span class="built_in">=</span>A(i2,i1)/A(i1,i1);</span><br><span class="line">            A(i2,:)<span class="built_in">=</span>-A(i1,:).*L_i1i2+A(i2,:);</span><br><span class="line">            b(i2)<span class="built_in">=</span>-b(i1)*L_i1i2+b(i2);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> A_row:-<span class="number">1</span>:<span class="number">1</span> <span class="comment">%回代求解</span></span><br><span class="line">    x(i1)<span class="built_in">=</span>b(i1);</span><br><span class="line">    for i2 <span class="built_in">=</span> A_col:-<span class="number">1</span>:i1+<span class="number">1</span></span><br><span class="line">        x(i1)<span class="built_in">=</span>x(i1)-A(i1,i2)*x(i2);</span><br><span class="line">    end</span><br><span class="line">    x(i1)<span class="built_in">=</span>x(i1)/A(i1,i1);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for i1<span class="built_in">=</span>length(x1_change):-<span class="number">1</span>:<span class="number">1</span> <span class="comment">%调转x为原有顺序</span></span><br><span class="line">    temp<span class="built_in">=</span>x(x1_change(i1));</span><br><span class="line">    x(x1_change(i1))<span class="built_in">=</span>x(x2_change(i1));</span><br><span class="line">    x(x2_change(i1))<span class="built_in">=</span>temp;</span><br><span class="line">end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% assignment3([2 3 4; 5 6 7; 8 9 11], [2 3 4])</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Calculation-Method/">Calculation Method</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning-homework/">learning, homework</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+<!--gitment 评论-->
+
+<!--gitment 评论 end-->
+  
+    <article id="post-assignment2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/22/assignment2/" class="article-date">
+      <time datetime="2018-05-22T07:44:58.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/assignment2/">逐次分半法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment2.m</span></span><br><span class="line"></span><br><span class="line">function [number,error]<span class="built_in">=</span>assignment2(a,b,e,n,t,number,error)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         a:积分下限</span></span><br><span class="line"><span class="comment">%         b:积分上限</span></span><br><span class="line"><span class="comment">%         e:容许误差</span></span><br><span class="line"><span class="comment">%         t:n/2的y值</span></span><br><span class="line"><span class="comment">%         n:n次分半</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         number:分半法关于n的矩阵，log(n)*1 对数底为2</span></span><br><span class="line"><span class="comment">%         error:误差矩阵，log(n)*1 对数底为2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">if</span> n<span class="built_in">=</span><span class="built_in">=</span><span class="number">1</span></span><br><span class="line">    y<span class="built_in">=</span>(sin(b)/b+sin(a)/a)*(b-a)/<span class="number">2</span>;</span><br><span class="line"><span class="built_in">else</span></span><br><span class="line">    y<span class="built_in">=</span>t/<span class="number">2</span>;</span><br><span class="line">    q<span class="built_in">=</span>(b-a)/n;</span><br><span class="line">    for ii<span class="built_in">=</span><span class="number">1</span>:n/<span class="number">2</span></span><br><span class="line">        y<span class="built_in">=</span>y+q*sin(a+(<span class="number">2</span>*ii-<span class="number">1</span>)*(b-a)/n)/(a+(<span class="number">2</span>*ii-<span class="number">1</span>)*(b-a)/n);</span><br><span class="line">    end</span><br><span class="line">    number<span class="built_in">=</span>[number n];</span><br><span class="line">    error<span class="built_in">=</span>[error abs(y-t)/<span class="number">3</span>];</span><br><span class="line">end</span><br><span class="line"><span class="built_in">if</span> abs(y-t)&lt;e*<span class="number">3</span></span><br><span class="line"><span class="built_in">else</span></span><br><span class="line">    [number, error]<span class="built_in">=</span>assignment2(a,b,e,n*<span class="number">2</span>,y,number,error);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% [number, error]=assignment2(1,2,0.0001,1,0,[],[])  </span></span><br><span class="line"><span class="comment">% n=number(end)</span></span><br><span class="line"><span class="comment">% plot(number,error)</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Calculation-Method/">Calculation Method</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning-homework/">learning, homework</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+<!--gitment 评论-->
+
+<!--gitment 评论 end-->
+  
     <article id="post-assignment1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -299,7 +501,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/18/assignment1/">assignment1</a>
+      <a class="article-title" href="/2018/05/18/assignment1/">拉格朗日插值法</a>
     </h1>
   
 
@@ -367,7 +569,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/25/First-Homework/">First Homework</a>
+      <a class="article-title" href="/2018/03/25/First-Homework/">二次项加法，乘法及输出方法实现</a>
     </h1>
   
 

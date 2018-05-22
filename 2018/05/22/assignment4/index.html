@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425% lagrange.mfunction y=lagrange(x0,y0,x)%  inputs:%         x0:系数矩阵，维度为n*1%         y0:载荷矩阵，维度为n*1%         x:绘图点矩阵，维度为m*1%  outputs:%         y:未知量矩阵，维度m*1n=l">
+<meta name="description" content="123456789101112131415161718192021% findMax.mfunction  [max_index] = findMax(Input_k,Row,k)  %  inputs:  %         Input_k:第k列的所有元素  %         Row   :矩阵的总行数  %         k      :第k列序号  %  outputs:  %">
 <meta name="keywords" content="learning, homework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拉格朗日插值法">
-<meta property="og:url" content="https://ouc16020021031.github.io/2018/05/18/assignment1/index.html">
+<meta property="og:title" content="Gauss-Seidel迭代法">
+<meta property="og:url" content="https://ouc16020021031.github.io/2018/05/22/assignment4/index.html">
 <meta property="og:site_name" content="小乔的博客">
-<meta property="og:description" content="12345678910111213141516171819202122232425% lagrange.mfunction y=lagrange(x0,y0,x)%  inputs:%         x0:系数矩阵，维度为n*1%         y0:载荷矩阵，维度为n*1%         x:绘图点矩阵，维度为m*1%  outputs:%         y:未知量矩阵，维度m*1n=l">
+<meta property="og:description" content="123456789101112131415161718192021% findMax.mfunction  [max_index] = findMax(Input_k,Row,k)  %  inputs:  %         Input_k:第k列的所有元素  %         Row   :矩阵的总行数  %         k      :第k列序号  %  outputs:  %">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T07:46:21.405Z">
+<meta property="og:updated_time" content="2018-05-22T07:57:31.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拉格朗日插值法">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425% lagrange.mfunction y=lagrange(x0,y0,x)%  inputs:%         x0:系数矩阵，维度为n*1%         y0:载荷矩阵，维度为n*1%         x:绘图点矩阵，维度为m*1%  outputs:%         y:未知量矩阵，维度m*1n=l">
+<meta name="twitter:title" content="Gauss-Seidel迭代法">
+<meta name="twitter:description" content="123456789101112131415161718192021% findMax.mfunction  [max_index] = findMax(Input_k,Row,k)  %  inputs:  %         Input_k:第k列的所有元素  %         Row   :矩阵的总行数  %         k      :第k列序号  %  outputs:  %">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>拉格朗日插值法 | 小乔的博客</title>
+<title>Gauss-Seidel迭代法 | 小乔的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-assignment1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-assignment4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/05/18/assignment1/" class="article-date">
-      <time datetime="2018-05-18T14:21:19.000Z" itemprop="datePublished">2018-05-18</time>
+      <a href="/2018/05/22/assignment4/" class="article-date">
+      <time datetime="2018-05-22T07:50:17.000Z" itemprop="datePublished">2018-05-22</time>
 </a>
 
 
@@ -294,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      拉格朗日插值法
+      Gauss-Seidel迭代法
     </h1>
   
 
@@ -319,8 +319,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% lagrange.m</span></span><br><span class="line"></span><br><span class="line">function y<span class="built_in">=</span>lagrange(x0,y0,x)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         x0:系数矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%         y0:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%         x:绘图点矩阵，维度为m*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         y:未知量矩阵，维度m*1</span></span><br><span class="line">n<span class="built_in">=</span>length(x0);</span><br><span class="line">m<span class="built_in">=</span>length(x);</span><br><span class="line">for i1<span class="built_in">=</span><span class="number">1</span>:m</span><br><span class="line">    temp<span class="built_in">=</span>x(i1);</span><br><span class="line">    sum<span class="built_in">=</span><span class="number">0</span>;</span><br><span class="line">    for i2<span class="built_in">=</span><span class="number">1</span>:n</span><br><span class="line">        l<span class="built_in">=</span><span class="number">1</span>;</span><br><span class="line">        for i3<span class="built_in">=</span><span class="number">1</span>:n</span><br><span class="line">            <span class="built_in">if</span> i2~<span class="built_in">=</span>i3</span><br><span class="line">                l<span class="built_in">=</span>l*(temp-x0(i3))/(x0(i2)-x0(i3));</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        sum<span class="built_in">=</span>sum+l*y0(i2);</span><br><span class="line">    end</span><br><span class="line">    y(i1)<span class="built_in">=</span>sum;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment1.m</span></span><br><span class="line"></span><br><span class="line">clear;</span><br><span class="line">x<span class="built_in">=</span>-<span class="number">1</span>:<span class="number">0.001</span>:<span class="number">1</span>;</span><br><span class="line">y<span class="built_in">=</span><span class="number">1</span>./(<span class="number">1</span>+<span class="number">25</span>.*x.*x);</span><br><span class="line">x1<span class="built_in">=</span>-<span class="number">1</span>:<span class="number">2</span>/<span class="number">4</span>:<span class="number">1</span>;</span><br><span class="line">y1<span class="built_in">=</span><span class="number">1</span>./(<span class="number">1</span>+<span class="number">25</span>.*x1.*x1);</span><br><span class="line">x2<span class="built_in">=</span>-<span class="number">1</span>:<span class="number">2</span>/<span class="number">10</span>:<span class="number">1</span>;</span><br><span class="line">y2<span class="built_in">=</span><span class="number">1</span>./(<span class="number">1</span>+<span class="number">25</span>.*x2.*x2);</span><br><span class="line">plot(x,y,<span class="string">'b'</span>);</span><br><span class="line">hold on;</span><br><span class="line">y<span class="built_in">=</span>lagrange(x1,y1,x);</span><br><span class="line">plot(x,y,<span class="string">'r'</span>);</span><br><span class="line">hold on;</span><br><span class="line">y<span class="built_in">=</span>lagrange(x2,y2,x);</span><br><span class="line">plot(x,y,<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
+        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% findMax.m</span></span><br><span class="line"></span><br><span class="line">function  [max_index] <span class="built_in">=</span> findMax(Input_k,Row,k)  </span><br><span class="line"><span class="comment">%  inputs:  </span></span><br><span class="line"><span class="comment">%         Input_k:第k列的所有元素  </span></span><br><span class="line"><span class="comment">%         Row   :矩阵的总行数  </span></span><br><span class="line"><span class="comment">%         k      :第k列序号  </span></span><br><span class="line"><span class="comment">%  outputs:  </span></span><br><span class="line"><span class="comment">%         max_index:第k列从第k行以后最大元素的行下标  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">% 初始化参数  </span></span><br><span class="line">max_index <span class="built_in">=</span> k;  </span><br><span class="line">max_val <span class="built_in">=</span> abs(Input_k(k));</span><br><span class="line"></span><br><span class="line">for i <span class="built_in">=</span> k:Row</span><br><span class="line">    <span class="built_in">if</span> max_val &lt; abs(Input_k(i))</span><br><span class="line">        max_val <span class="built_in">=</span> abs(Input_k(i));  </span><br><span class="line">        max_index <span class="built_in">=</span> i;  </span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment4.m</span></span><br><span class="line"></span><br><span class="line">function [x] <span class="built_in">=</span> assignment4(A,b,x)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         A:系数矩阵，维度为n*n</span></span><br><span class="line"><span class="comment">%         b:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         x:未知量矩阵，维度n*1</span></span><br><span class="line"></span><br><span class="line">[A_row,A_col] <span class="built_in">=</span> size(A);</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> <span class="number">1</span>:A_col-<span class="number">1</span></span><br><span class="line">    max_index <span class="built_in">=</span> findMax(A(:,i1),A_row,i1);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">%如果最大值索引不是k，则交换第k行与max_index行</span></span><br><span class="line">    <span class="built_in">if</span> max_index ~<span class="built_in">=</span> i1</span><br><span class="line">        for i2 <span class="built_in">=</span> i1:A_col     <span class="comment">% 交换矩阵</span></span><br><span class="line">            temp <span class="built_in">=</span> A(max_index,i2);</span><br><span class="line">            A(max_index,i2) <span class="built_in">=</span> A(i1,i2);</span><br><span class="line">            A(i1,i2) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        temp_k <span class="built_in">=</span> b(i1);</span><br><span class="line">        b(i1) <span class="built_in">=</span> b(max_index);</span><br><span class="line">        b(max_index) <span class="built_in">=</span> temp_k;</span><br><span class="line">    end</span><br><span class="line">    <span class="comment">% 循环计算第k+1行到最后一行</span></span><br><span class="line">    </span><br><span class="line">    for i2 <span class="built_in">=</span> i1+<span class="number">1</span>:A_row</span><br><span class="line">        L_i1i2 <span class="built_in">=</span> A(i2,i1) / A(i1,i1); <span class="comment">%更新L_ik</span></span><br><span class="line">        <span class="comment">% 更新每一行从第i个元素开始后的所有元素</span></span><br><span class="line">        for j <span class="built_in">=</span> i1+<span class="number">1</span>:A_col</span><br><span class="line">            A(i2,j) <span class="built_in">=</span> A(i2,j) -  L_i1i2*A(i1,j); <span class="comment">% 更新a(i2,j)</span></span><br><span class="line">        end</span><br><span class="line">        b(i2) <span class="built_in">=</span> b(i2) - b(i1)*L_i1i2; <span class="comment">% 更新b(i2)</span></span><br><span class="line">        A(i2,<span class="number">1</span>) <span class="built_in">=</span> <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">x(A_row) <span class="built_in">=</span> b(A_row)/A(A_row,A_col);</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> A_row-<span class="number">1</span>:-<span class="number">1</span>:<span class="number">1</span></span><br><span class="line">    sum_temp <span class="built_in">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    for j <span class="built_in">=</span> i1+<span class="number">1</span>:A_col</span><br><span class="line">        sum_temp <span class="built_in">=</span> sum_temp + A(i1,j)*x(j);</span><br><span class="line">    end</span><br><span class="line">    x(i1) <span class="built_in">=</span> (b(i1) - sum_temp)/A(i1,i1);</span><br><span class="line">end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[0 0 0])</span></span><br><span class="line"><span class="comment">% assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[1 1 1])</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -328,13 +328,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/05/18/assignment1/">拉格朗日插值法</a></p>
+        <p><span>本文标题:</span><a href="/2018/05/22/assignment4/">Gauss-Seidel迭代法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">小乔</a></p>
-        <p><span>发布时间:</span>2018-05-18, 22:21:19</p>
-        <p><span>最后更新:</span>2018-05-22, 15:46:21</p>
+        <p><span>发布时间:</span>2018-05-22, 15:50:17</p>
+        <p><span>最后更新:</span>2018-05-22, 15:57:31</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/05/18/assignment1/" title="拉格朗日插值法">https://ouc16020021031.github.io/2018/05/18/assignment1/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://ouc16020021031.github.io/2018/05/18/assignment1/　　作者: 小乔" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/22/assignment4/" title="Gauss-Seidel迭代法">https://ouc16020021031.github.io/2018/05/22/assignment4/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ouc16020021031.github.io/2018/05/22/assignment4/　　作者: 小乔" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -346,16 +346,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/05/22/assignment2/">
-                    逐次分半法
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/03/25/First-Homework/">
-                    二次项加法，乘法及输出方法实现
+                <a href="/2018/05/22/assignment3/">
+                    列主元消去法
                 </a>
             </div>
         
@@ -403,7 +397,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"拉格朗日插值法　| 小乔的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Gauss-Seidel迭代法　| 小乔的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -423,15 +417,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/05/22/assignment2/" title="上一篇: 逐次分半法">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/03/25/First-Homework/" title="下一篇: 二次项加法，乘法及输出方法实现">
+            <a href="/2018/05/22/assignment3/" title="下一篇: 列主元消去法">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -473,8 +465,8 @@
      
       <script type="text/javascript">
         var gitment = new Gitment({
-			  id: '拉格朗日插值法',
-			  title: '拉格朗日插值法',
+			  id: 'Gauss-Seidel迭代法',
+			  title: 'Gauss-Seidel迭代法',
 			  owner: 'ouc16020021031',
 			  repo: 'ouc16020021031.github.io',
 			  oauth: {

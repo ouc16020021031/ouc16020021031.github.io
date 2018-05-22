@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425% lagrange.mfunction y=lagrange(x0,y0,x)%  inputs:%         x0:系数矩阵，维度为n*1%         y0:载荷矩阵，维度为n*1%         x:绘图点矩阵，维度为m*1%  outputs:%         y:未知量矩阵，维度m*1n=l">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273% assignment3.mfunction [x] = assignment3(A,b)%  inputs:%">
 <meta name="keywords" content="learning, homework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拉格朗日插值法">
-<meta property="og:url" content="https://ouc16020021031.github.io/2018/05/18/assignment1/index.html">
+<meta property="og:title" content="列主元消去法">
+<meta property="og:url" content="https://ouc16020021031.github.io/2018/05/22/assignment3/index.html">
 <meta property="og:site_name" content="小乔的博客">
-<meta property="og:description" content="12345678910111213141516171819202122232425% lagrange.mfunction y=lagrange(x0,y0,x)%  inputs:%         x0:系数矩阵，维度为n*1%         y0:载荷矩阵，维度为n*1%         x:绘图点矩阵，维度为m*1%  outputs:%         y:未知量矩阵，维度m*1n=l">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273% assignment3.mfunction [x] = assignment3(A,b)%  inputs:%">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T07:46:21.405Z">
+<meta property="og:updated_time" content="2018-05-22T07:56:20.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拉格朗日插值法">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425% lagrange.mfunction y=lagrange(x0,y0,x)%  inputs:%         x0:系数矩阵，维度为n*1%         y0:载荷矩阵，维度为n*1%         x:绘图点矩阵，维度为m*1%  outputs:%         y:未知量矩阵，维度m*1n=l">
+<meta name="twitter:title" content="列主元消去法">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273% assignment3.mfunction [x] = assignment3(A,b)%  inputs:%">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>拉格朗日插值法 | 小乔的博客</title>
+<title>列主元消去法 | 小乔的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-assignment1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-assignment3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/05/18/assignment1/" class="article-date">
-      <time datetime="2018-05-18T14:21:19.000Z" itemprop="datePublished">2018-05-18</time>
+      <a href="/2018/05/22/assignment3/" class="article-date">
+      <time datetime="2018-05-22T07:47:37.000Z" itemprop="datePublished">2018-05-22</time>
 </a>
 
 
@@ -294,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      拉格朗日插值法
+      列主元消去法
     </h1>
   
 
@@ -319,8 +319,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% lagrange.m</span></span><br><span class="line"></span><br><span class="line">function y<span class="built_in">=</span>lagrange(x0,y0,x)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         x0:系数矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%         y0:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%         x:绘图点矩阵，维度为m*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         y:未知量矩阵，维度m*1</span></span><br><span class="line">n<span class="built_in">=</span>length(x0);</span><br><span class="line">m<span class="built_in">=</span>length(x);</span><br><span class="line">for i1<span class="built_in">=</span><span class="number">1</span>:m</span><br><span class="line">    temp<span class="built_in">=</span>x(i1);</span><br><span class="line">    sum<span class="built_in">=</span><span class="number">0</span>;</span><br><span class="line">    for i2<span class="built_in">=</span><span class="number">1</span>:n</span><br><span class="line">        l<span class="built_in">=</span><span class="number">1</span>;</span><br><span class="line">        for i3<span class="built_in">=</span><span class="number">1</span>:n</span><br><span class="line">            <span class="built_in">if</span> i2~<span class="built_in">=</span>i3</span><br><span class="line">                l<span class="built_in">=</span>l*(temp-x0(i3))/(x0(i2)-x0(i3));</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        sum<span class="built_in">=</span>sum+l*y0(i2);</span><br><span class="line">    end</span><br><span class="line">    y(i1)<span class="built_in">=</span>sum;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment1.m</span></span><br><span class="line"></span><br><span class="line">clear;</span><br><span class="line">x<span class="built_in">=</span>-<span class="number">1</span>:<span class="number">0.001</span>:<span class="number">1</span>;</span><br><span class="line">y<span class="built_in">=</span><span class="number">1</span>./(<span class="number">1</span>+<span class="number">25</span>.*x.*x);</span><br><span class="line">x1<span class="built_in">=</span>-<span class="number">1</span>:<span class="number">2</span>/<span class="number">4</span>:<span class="number">1</span>;</span><br><span class="line">y1<span class="built_in">=</span><span class="number">1</span>./(<span class="number">1</span>+<span class="number">25</span>.*x1.*x1);</span><br><span class="line">x2<span class="built_in">=</span>-<span class="number">1</span>:<span class="number">2</span>/<span class="number">10</span>:<span class="number">1</span>;</span><br><span class="line">y2<span class="built_in">=</span><span class="number">1</span>./(<span class="number">1</span>+<span class="number">25</span>.*x2.*x2);</span><br><span class="line">plot(x,y,<span class="string">'b'</span>);</span><br><span class="line">hold on;</span><br><span class="line">y<span class="built_in">=</span>lagrange(x1,y1,x);</span><br><span class="line">plot(x,y,<span class="string">'r'</span>);</span><br><span class="line">hold on;</span><br><span class="line">y<span class="built_in">=</span>lagrange(x2,y2,x);</span><br><span class="line">plot(x,y,<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
+        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment3.m</span></span><br><span class="line"></span><br><span class="line">function [x] <span class="built_in">=</span> assignment3(A,b)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         A:系数矩阵，维度为n*n</span></span><br><span class="line"><span class="comment">%         b:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         x:未知量矩阵，维度n*1</span></span><br><span class="line"></span><br><span class="line">[A_row,A_col] <span class="built_in">=</span> size(A);</span><br><span class="line">x<span class="built_in">=</span>zeros(A_row,<span class="number">1</span>);</span><br><span class="line">x1_change<span class="built_in">=</span>[]; <span class="comment">% x1_change，x2_change记录x的位置变换</span></span><br><span class="line">x2_change<span class="built_in">=</span>[];</span><br><span class="line"></span><br><span class="line">for i1<span class="built_in">=</span><span class="number">1</span>:A_col-<span class="number">1</span> <span class="comment">%找出右下方矩阵中最大的系数</span></span><br><span class="line">    max_val<span class="built_in">=</span><span class="number">0</span>;</span><br><span class="line">    for i2<span class="built_in">=</span>i1:A_row</span><br><span class="line">        for i3<span class="built_in">=</span>i1:A_col</span><br><span class="line">        	<span class="built_in">if</span> max_val &lt; abs(A(i2,i3))</span><br><span class="line">                max_val <span class="built_in">=</span> abs(A(i2,i3));  </span><br><span class="line">                max_i <span class="built_in">=</span> i2;  </span><br><span class="line">                max_j <span class="built_in">=</span> i3;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">if</span> max_i ~<span class="built_in">=</span> i1 <span class="comment">% 行交换矩阵</span></span><br><span class="line">        for i2 <span class="built_in">=</span> i1:A_col</span><br><span class="line">            temp <span class="built_in">=</span> A(max_i,i2);</span><br><span class="line">            A(max_i,i2) <span class="built_in">=</span> A(i1,i2);</span><br><span class="line">            A(i1,i2) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        temp <span class="built_in">=</span> b(i1);</span><br><span class="line">        b(i1) <span class="built_in">=</span> b(max_i);</span><br><span class="line">        b(max_i) <span class="built_in">=</span> temp; </span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">if</span> max_j ~<span class="built_in">=</span> i1 <span class="comment">% 列交换矩阵</span></span><br><span class="line">        for i2 <span class="built_in">=</span> <span class="number">1</span>:A_col</span><br><span class="line">            temp <span class="built_in">=</span> A(i2,max_j);</span><br><span class="line">            A(i2,max_j) <span class="built_in">=</span> A(i2,i1);</span><br><span class="line">            A(i2,i1) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        x1_change <span class="built_in">=</span> [x1_change max_j]; <span class="comment">% 记录x的交换</span></span><br><span class="line">        x2_change <span class="built_in">=</span> [x2_change i1];</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">if</span> A(i1,i1) ~<span class="built_in">=</span> <span class="number">0</span> <span class="comment">% 消元</span></span><br><span class="line">        for i2 <span class="built_in">=</span> i1+<span class="number">1</span>:A_row</span><br><span class="line">            L_i1i2<span class="built_in">=</span>A(i2,i1)/A(i1,i1);</span><br><span class="line">            A(i2,:)<span class="built_in">=</span>-A(i1,:).*L_i1i2+A(i2,:);</span><br><span class="line">            b(i2)<span class="built_in">=</span>-b(i1)*L_i1i2+b(i2);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> A_row:-<span class="number">1</span>:<span class="number">1</span> <span class="comment">%回代求解</span></span><br><span class="line">    x(i1)<span class="built_in">=</span>b(i1);</span><br><span class="line">    for i2 <span class="built_in">=</span> A_col:-<span class="number">1</span>:i1+<span class="number">1</span></span><br><span class="line">        x(i1)<span class="built_in">=</span>x(i1)-A(i1,i2)*x(i2);</span><br><span class="line">    end</span><br><span class="line">    x(i1)<span class="built_in">=</span>x(i1)/A(i1,i1);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for i1<span class="built_in">=</span>length(x1_change):-<span class="number">1</span>:<span class="number">1</span> <span class="comment">%调转x为原有顺序</span></span><br><span class="line">    temp<span class="built_in">=</span>x(x1_change(i1));</span><br><span class="line">    x(x1_change(i1))<span class="built_in">=</span>x(x2_change(i1));</span><br><span class="line">    x(x2_change(i1))<span class="built_in">=</span>temp;</span><br><span class="line">end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% assignment3([2 3 4; 5 6 7; 8 9 11], [2 3 4])</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -328,13 +327,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/05/18/assignment1/">拉格朗日插值法</a></p>
+        <p><span>本文标题:</span><a href="/2018/05/22/assignment3/">列主元消去法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">小乔</a></p>
-        <p><span>发布时间:</span>2018-05-18, 22:21:19</p>
-        <p><span>最后更新:</span>2018-05-22, 15:46:21</p>
+        <p><span>发布时间:</span>2018-05-22, 15:47:37</p>
+        <p><span>最后更新:</span>2018-05-22, 15:56:20</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/05/18/assignment1/" title="拉格朗日插值法">https://ouc16020021031.github.io/2018/05/18/assignment1/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://ouc16020021031.github.io/2018/05/18/assignment1/　　作者: 小乔" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/22/assignment3/" title="列主元消去法">https://ouc16020021031.github.io/2018/05/22/assignment3/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ouc16020021031.github.io/2018/05/22/assignment3/　　作者: 小乔" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -347,15 +346,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/05/22/assignment2/">
-                    逐次分半法
+                <a href="/2018/05/22/assignment4/">
+                    Gauss-Seidel迭代法
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/03/25/First-Homework/">
-                    二次项加法，乘法及输出方法实现
+                <a href="/2018/05/22/assignment2/">
+                    逐次分半法
                 </a>
             </div>
         
@@ -403,7 +402,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"拉格朗日插值法　| 小乔的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"列主元消去法　| 小乔的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -423,7 +422,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/05/22/assignment2/" title="上一篇: 逐次分半法">
+            <a href="/2018/05/22/assignment4/" title="上一篇: Gauss-Seidel迭代法">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -431,7 +430,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/03/25/First-Homework/" title="下一篇: 二次项加法，乘法及输出方法实现">
+            <a href="/2018/05/22/assignment2/" title="下一篇: 逐次分半法">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -473,8 +472,8 @@
      
       <script type="text/javascript">
         var gitment = new Gitment({
-			  id: '拉格朗日插值法',
-			  title: '拉格朗日插值法',
+			  id: '列主元消去法',
+			  title: '列主元消去法',
 			  owner: 'ouc16020021031',
 			  repo: 'ouc16020021031.github.io',
 			  oauth: {
