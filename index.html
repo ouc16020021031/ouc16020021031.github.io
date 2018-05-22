@@ -199,7 +199,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/learning-homework/">learning homework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/”learning“/">”learning“</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/learning/">learning</a></li></ul>
                     </div>
                 </section>
                 
@@ -324,7 +324,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning-homework/">learning homework</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/">learning</a></li></ul>
     </div>
 
       
@@ -391,7 +391,74 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning-homework/">learning homework</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/">learning</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+<!--gitment 评论-->
+
+<!--gitment 评论 end-->
+  
+    <article id="post-assignment2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/22/assignment2/" class="article-date">
+      <time datetime="2018-05-22T07:44:58.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/assignment2/">逐次分半法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment2.m</span></span><br><span class="line"></span><br><span class="line">function [number,error]<span class="built_in">=</span>assignment2(a,b,e,n,t,number,error)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         a:积分下限</span></span><br><span class="line"><span class="comment">%         b:积分上限</span></span><br><span class="line"><span class="comment">%         e:容许误差</span></span><br><span class="line"><span class="comment">%         t:n/2的y值</span></span><br><span class="line"><span class="comment">%         n:n次分半</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         number:分半法关于n的矩阵，log(n)*1 对数底为2</span></span><br><span class="line"><span class="comment">%         error:误差矩阵，log(n)*1 对数底为2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">if</span> n<span class="built_in">=</span><span class="built_in">=</span><span class="number">1</span></span><br><span class="line">    y<span class="built_in">=</span>(sin(b)/b+sin(a)/a)*(b-a)/<span class="number">2</span>;</span><br><span class="line"><span class="built_in">else</span></span><br><span class="line">    y<span class="built_in">=</span>t/<span class="number">2</span>;</span><br><span class="line">    q<span class="built_in">=</span>(b-a)/n;</span><br><span class="line">    for ii<span class="built_in">=</span><span class="number">1</span>:n/<span class="number">2</span></span><br><span class="line">        y<span class="built_in">=</span>y+q*sin(a+(<span class="number">2</span>*ii-<span class="number">1</span>)*(b-a)/n)/(a+(<span class="number">2</span>*ii-<span class="number">1</span>)*(b-a)/n);</span><br><span class="line">    end</span><br><span class="line">    number<span class="built_in">=</span>[number n];</span><br><span class="line">    error<span class="built_in">=</span>[error abs(y-t)/<span class="number">3</span>];</span><br><span class="line">end</span><br><span class="line"><span class="built_in">if</span> abs(y-t)&lt;e*<span class="number">3</span></span><br><span class="line"><span class="built_in">else</span></span><br><span class="line">    [number, error]<span class="built_in">=</span>assignment2(a,b,e,n*<span class="number">2</span>,y,number,error);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% [number, error]=assignment2(1,2,0.0001,1,0,[],[])  </span></span><br><span class="line"><span class="comment">% n=number(end)</span></span><br><span class="line"><span class="comment">% plot(number,error)</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Calculation-Method/">Calculation Method</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/">learning</a></li></ul>
     </div>
 
       
@@ -459,7 +526,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning-homework/">learning homework</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/">learning</a></li></ul>
     </div>
 
       
@@ -528,7 +595,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/”learning“/">”learning“</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/">learning</a></li></ul>
     </div>
 
       
