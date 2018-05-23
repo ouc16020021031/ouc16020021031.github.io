@@ -1,620 +1,208 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="学了就忘">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
+    <title>
+        
+        二次项加法，乘法及输出方法实现 - undefined
+        
+    </title>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="小乔" />
-
-
-
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta name="keywords" content="learning">
-<meta property="og:type" content="article">
-<meta property="og:title" content="二次项加法，乘法及输出方法实现">
-<meta property="og:url" content="https://ouc16020021031.github.io/2018/03/25/First-Homework/index.html">
-<meta property="og:site_name" content="小乔的博客">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-23T10:45:40.978Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二次项加法，乘法及输出方法实现">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
-
-
-    <link rel="alternate" href="/atom.xml" title="小乔的博客" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="img/favicon.icon">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>二次项加法，乘法及输出方法实现 | 小乔的博客</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
-    }
-</script>
-
-
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
+
 <body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">小乔</a></h1>
-        </hgroup>
 
-        
-        <p class="header-subtitle">学了就忘</p>
-        
-
-        
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/log/">更新日志</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto: ouc16020021031@gmail.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/ouc16020021031" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/learning/">learning</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">学了就忘</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
 </div>
+
+<div class="index-about">
+    <i> 学了就忘 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>小乔</i>
+        </div>
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">小乔</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">小乔</a></h1>
-            </hgroup>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
             
-            <p class="header-subtitle">学了就忘</p>
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/log/">更新日志</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto: ouc16020021031@gmail.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/ouc16020021031" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
+        </ul>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
-</nav>
-      <div class="body-wrap"><article id="post-First-Homework" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/03/25/First-Homework/" class="article-date">
-      <time datetime="2018-03-25T08:07:01.000Z" itemprop="datePublished">2018-03-25</time>
-</a>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
 
 
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
     </div>
-  
-  <div class="article-inner">
+</div>
+        <div class="index-about-mobile">
+            <i> 学了就忘 </i>
+        </div>
+    </div>
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <div class="index-middle">
+        <!-- Main Content -->
         
-  
-    <h1 class="article-title" itemprop="name">
-      二次项加法，乘法及输出方法实现
-    </h1>
-  
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a>
+
+<div class="post-container">
+    <div class="post-title">
+        二次项加法，乘法及输出方法实现
     </div>
 
-
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-03-25 16:07:01</span></span>
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/">learning</a></li></ul>
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#learning" title="learning">learning</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
     </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+    <div class="post-content ">
         <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//description:</span></span><br><span class="line"><span class="comment">//使用c++ 标准模版库 vector 容器，</span></span><br><span class="line"><span class="comment">//实现一元多项式的初始化、遍历打印、</span></span><br><span class="line"><span class="comment">//加法、减法及乘法操作。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Number</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> coefficient;</span><br><span class="line">	<span class="keyword">int</span> index;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Polynomial</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;Number&gt;  container;</span><br><span class="line"></span><br><span class="line">	Polynomial(<span class="keyword">bool</span> flag = <span class="literal">false</span>)<span class="comment">//初始化多项式</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (flag)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">vector</span>&lt;Number&gt;::iterator it;</span><br><span class="line">			Number temp;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; temp.coefficient;</span><br><span class="line">			<span class="keyword">if</span> (temp.coefficient == <span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; temp.index;</span><br><span class="line">			<span class="keyword">for</span> (it = container.begin(); it != container.end(); it++)</span><br><span class="line">				<span class="keyword">if</span> (it-&gt;index &gt; temp.index) &#123; it = container.insert(it, temp); <span class="keyword">break</span>; &#125;</span><br><span class="line">			<span class="keyword">if</span> (it == container.end())container.push_back(temp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="comment">//构造函数</span></span><br><span class="line">	Polynomial(Polynomial&amp; pol) &#123; container = pol.container; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">travelPrint</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">string</span> str;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"f(x) = "</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;Number&gt;::iterator it = container.begin(); it != container.end(); it++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (it != container.begin())</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (it-&gt;coefficient &gt; <span class="number">0</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">" +"</span>;</span><br><span class="line">				<span class="keyword">if</span> (it-&gt;coefficient &lt; <span class="number">0</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (it-&gt;coefficient == <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (it-&gt;coefficient == <span class="number">-1</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">"-"</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; (*it).coefficient;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (it-&gt;index == <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (it-&gt;index == <span class="number">1</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">"x"</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"x^"</span> &lt;&lt; (*it).index;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (it-&gt;index == <span class="number">0</span> &amp;&amp; it-&gt;coefficient == <span class="number">1</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">"1"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;<span class="comment">//遍历打印多项式</span></span><br><span class="line"></span><br><span class="line">	Polynomial <span class="keyword">operator</span>+(Polynomial&amp; pol_2)</span><br><span class="line">	&#123;</span><br><span class="line">		Polynomial pol_1 = *<span class="keyword">this</span>;</span><br><span class="line">		<span class="built_in">vector</span>&lt;Number&gt;::iterator it1, it2;</span><br><span class="line">		<span class="keyword">for</span> (it2 = pol_2.container.begin(); it2 != pol_2.container.end(); it2++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (it1 = pol_1.container.begin(); it1 != pol_1.container.end(); it1++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (it1-&gt;index &gt; it2-&gt;index) &#123; it1 = pol_1.container.insert(it1, *it2); <span class="keyword">break</span>; &#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (it1-&gt;index == it2-&gt;index) &#123; it1-&gt;coefficient += it2-&gt;coefficient; <span class="keyword">break</span>; &#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (it1 == pol_1.container.end()) &#123; pol_1.container.push_back(*it2); &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> pol_1;</span><br><span class="line">	&#125;<span class="comment">//重载“+”运算符</span></span><br><span class="line"></span><br><span class="line">	Polynomial <span class="keyword">operator</span>-(Polynomial&amp; another)</span><br><span class="line">	&#123;</span><br><span class="line">		Polynomial pol_1 = *<span class="keyword">this</span>;</span><br><span class="line">		Polynomial pol_2 = another;</span><br><span class="line">		<span class="built_in">vector</span>&lt;Number&gt;::iterator it;</span><br><span class="line">		<span class="keyword">for</span> (it = pol_2.container.begin(); it != pol_2.container.end(); it++)</span><br><span class="line">			it-&gt;coefficient = -it-&gt;coefficient;</span><br><span class="line">		pol_1 = pol_1 + pol_2;</span><br><span class="line">		<span class="keyword">return</span> pol_1;</span><br><span class="line">	&#125;<span class="comment">//重载“-”运算符</span></span><br><span class="line"></span><br><span class="line">	Polynomial <span class="keyword">operator</span>*(Polynomial&amp; another)</span><br><span class="line">	&#123;</span><br><span class="line">		Polynomial *polynomials[<span class="number">100</span>], result;</span><br><span class="line">		<span class="built_in">vector</span>&lt;Number&gt;::iterator it1, it2;</span><br><span class="line">		Number temp;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (it1 = container.begin(); it1 != container.end(); it1++)</span><br><span class="line">		&#123;</span><br><span class="line">			polynomials[i] = <span class="keyword">new</span> Polynomial();</span><br><span class="line">			<span class="keyword">for</span> (it2 = another.container.begin(); it2 != another.container.end(); it2++)</span><br><span class="line">			&#123;</span><br><span class="line">				temp.coefficient = it1-&gt;coefficient * it2-&gt;coefficient;</span><br><span class="line">				temp.index = it1-&gt;index + it2-&gt;index;</span><br><span class="line">				polynomials[i]-&gt;container.push_back(temp);</span><br><span class="line">			&#125;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; container.size(); i++)</span><br><span class="line">			result = result + *polynomials[i];</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;<span class="comment">//重载“*”运算符</span></span><br><span class="line">	 <span class="comment">//f1 * f2 =a1*f2+a2*f2+...+an*f2</span></span><br><span class="line">	 <span class="comment">//ai*f2 =&gt; n个多项式，再将这n个多项式相加</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">info</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"沈琢乔"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">time_t</span> nowtime;</span><br><span class="line">	nowtime = time(<span class="literal">NULL</span>); <span class="comment">//获取日历时间   </span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">tm</span> *<span class="title">local</span>;</span></span><br><span class="line">	local = localtime(&amp;nowtime);  <span class="comment">//获取当前系统时间  </span></span><br><span class="line">	<span class="keyword">char</span> buf[<span class="number">80</span>];</span><br><span class="line">	strftime(buf, <span class="number">80</span>, <span class="string">"%Y-%m-%d %H:%M:%S"</span>, local);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; buf &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	getchar();<span class="comment">//使程序停顿</span></span><br><span class="line">	getchar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Polynomial *polynomials[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">int</span> n = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"请分别输入第"</span> &lt;&lt; i + <span class="number">1</span> &lt;&lt; <span class="string">"个二次项每项的系数和次数，"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"输入0并摁回车即可退出输入，"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"每行输入其中一项的系数和次数，中间用空格隔开："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		polynomials[i] = <span class="keyword">new</span> Polynomial(<span class="literal">true</span>);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Polynomial add, substract, multiply;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)<span class="comment">//输出f1，f2</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"f"</span> &lt;&lt; i + <span class="number">1</span> &lt;&lt; <span class="string">"："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		polynomials[i]-&gt;travelPrint();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"f1 + f2："</span> &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//输出f1 + f2</span></span><br><span class="line">	add = *polynomials[<span class="number">0</span>] + *polynomials[<span class="number">1</span>];</span><br><span class="line">	add.travelPrint();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"f1 - f2："</span> &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//输出f1 - f2</span></span><br><span class="line">	substract = *polynomials[<span class="number">0</span>] - *polynomials[<span class="number">1</span>];</span><br><span class="line">	substract.travelPrint();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"f1 * f2："</span> &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//输出f1 * f2</span></span><br><span class="line">	multiply = *polynomials[<span class="number">0</span>] * *polynomials[<span class="number">1</span>];</span><br><span class="line">	multiply.travelPrint();</span><br><span class="line">	info();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="/document/数据结构第一次作业.pdf">数据结构第一次作业.pdf</a></p>
 
-      
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">donate</button>
     </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/03/25/First-Homework/">二次项加法，乘法及输出方法实现</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">小乔</a></p>
-        <p><span>发布时间:</span>2018-03-25, 16:07:01</p>
-        <p><span>最后更新:</span>2018-05-23, 18:45:40</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/03/25/First-Homework/" title="二次项加法，乘法及输出方法实现">https://ouc16020021031.github.io/2018/03/25/First-Homework/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://ouc16020021031.github.io/2018/03/25/First-Homework/　　作者: 小乔" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
     </div>
-
-
-
-    <nav id="article-nav">
+</div>
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/05/18/assignment1/">
-                    拉格朗日插值法
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/03/18/hello-world/">
-                    Hello World
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        <div id="comment-container">
         </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"二次项加法，乘法及输出方法实现　| 小乔的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
+    </div>
+</div>
+    </div>
 </div>
 
 
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
 
+        
 
+        
 
+        
 
+        
 
+    </ul>
     
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2018/05/18/assignment1/" title="上一篇: 拉格朗日插值法">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2018/03/18/hello-world/" title="下一篇: Hello World">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/22/assignment4/">Gauss-Seidel迭代法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/22/assignment3/">列主元消去法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/22/assignment2/">逐次分半法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/assignment1/">拉格朗日插值法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/25/First-Homework/">二次项加法，乘法及输出方法实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/18/hello-world/">Hello World</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
-
-
-<!--gitment 评论-->
-
-  <div class="comments" id="comments">
-  
-	<!--汉化-->
-    <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
-	<script src="https://billts.site/js/gitment.js"></script>
-	<!--原型-->
-	<!--
-	<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-	<script src="https://imsun.github.io/gitment/dist/gitment.browser.js" type="text/javascript"></script>
-	-->
-	
-      <div id="gitmentContainer" style="margin-bottom: -19px;"></div>
-     
-      <style>
-        .gitment-container a {
-          border: none;
-        }
-        .comments {
-          margin: 60px 0 0;padding: 0 60px;
-        }
-      </style>
-     
-      <script type="text/javascript">
-        var gitment = new Gitment({
-			  id: '二次项加法，乘法及输出方法实现',
-			  title: '二次项加法，乘法及输出方法实现',
-			  owner: 'ouc16020021031',
-			  repo: 'ouc16020021031.github.io',
-			  oauth: {
-				client_id: '331e2557e01d4fa077d0',
-				client_secret: 'e6b823738a44c633f16b524fded2c3d8bb01b73f',
-			  },
-        })
-        gitment.render('gitmentContainer')
-      </script>
-    
-  </div>
-
-<!--gitment 评论 end--></div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2018 小乔
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
-    </div>
 </footer>
-    </div>
-    
-    <script src="/js/GithubRepoWidget.js"></script>
-
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 
 
-
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-             github: ".github-widget a", 
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-            
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
-
-    <script>
-        var originTitle = document.title;
-        var titleTime;
-        document.addEventListener("visibilitychange", function() {
-            if (document.hidden) {
-                document.title = "(つェ⊂) 静待您的下次光临~ " + originTitle;
-                clearTimeout(titleTime);
-            }
-            else {
-                document.title = "(*´∇｀*) 欢迎光临~ " + originTitle;
-                titleTime = setTimeout(function() {
-                    document.title = originTitle;
-                }, 2000);
-            }
-        })
-    </script>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-  </div>
 </body>
-</html>
 
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.xml"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '二次项加法，乘法及输出方法实现',
+        owner: 'ouc16020021031',
+        repo: 'ouc16020021031.github.io',
+        oauth: {
+            client_id: '331e2557e01d4fa077d0',
+            client_secret: 'e6b823738a44c633f16b524fded2c3d8bb01b73f',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
