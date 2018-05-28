@@ -56,38 +56,38 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
 			<li >
                 <a href="/categories">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>分类</span>
+                    <span>CATEGORIES</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -95,7 +95,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤"><span class="toc-text">算法步骤</span></a></li></ol>
 </div>
     
 </div>
@@ -106,7 +106,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -129,26 +129,30 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2018-05-22 15:50:17</span></span>
+        <span class="attr">Post：<span>2018-05-22 15:50:17</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#learning" title="learning">learning</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
-    <div class="post-content ">
-        <figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% findMax.m</span></span><br><span class="line"></span><br><span class="line">function  [max_index] <span class="built_in">=</span> findMax(Input_k,Row,k)  </span><br><span class="line"><span class="comment">%  inputs:  </span></span><br><span class="line"><span class="comment">%         Input_k:第k列的所有元素  </span></span><br><span class="line"><span class="comment">%         Row   :矩阵的总行数  </span></span><br><span class="line"><span class="comment">%         k      :第k列序号  </span></span><br><span class="line"><span class="comment">%  outputs:  </span></span><br><span class="line"><span class="comment">%         max_index:第k列从第k行以后最大元素的行下标  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">% 初始化参数  </span></span><br><span class="line">max_index <span class="built_in">=</span> k;  </span><br><span class="line">max_val <span class="built_in">=</span> abs(Input_k(k));</span><br><span class="line"></span><br><span class="line">for i <span class="built_in">=</span> k:Row</span><br><span class="line">    <span class="built_in">if</span> max_val &lt; abs(Input_k(i))</span><br><span class="line">        max_val <span class="built_in">=</span> abs(Input_k(i));  </span><br><span class="line">        max_index <span class="built_in">=</span> i;  </span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment4.m</span></span><br><span class="line"></span><br><span class="line">function [x] <span class="built_in">=</span> assignment4(A,b,x)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         A:系数矩阵，维度为n*n</span></span><br><span class="line"><span class="comment">%         b:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         x:未知量矩阵，维度n*1</span></span><br><span class="line"></span><br><span class="line">[A_row,A_col] <span class="built_in">=</span> size(A);</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> <span class="number">1</span>:A_col-<span class="number">1</span></span><br><span class="line">    max_index <span class="built_in">=</span> findMax(A(:,i1),A_row,i1);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">%如果最大值索引不是k，则交换第k行与max_index行</span></span><br><span class="line">    <span class="built_in">if</span> max_index ~<span class="built_in">=</span> i1</span><br><span class="line">        for i2 <span class="built_in">=</span> i1:A_col     <span class="comment">% 交换矩阵</span></span><br><span class="line">            temp <span class="built_in">=</span> A(max_index,i2);</span><br><span class="line">            A(max_index,i2) <span class="built_in">=</span> A(i1,i2);</span><br><span class="line">            A(i1,i2) <span class="built_in">=</span> temp;</span><br><span class="line">        end</span><br><span class="line">        temp_k <span class="built_in">=</span> b(i1);</span><br><span class="line">        b(i1) <span class="built_in">=</span> b(max_index);</span><br><span class="line">        b(max_index) <span class="built_in">=</span> temp_k;</span><br><span class="line">    end</span><br><span class="line">    <span class="comment">% 循环计算第k+1行到最后一行</span></span><br><span class="line">    </span><br><span class="line">    for i2 <span class="built_in">=</span> i1+<span class="number">1</span>:A_row</span><br><span class="line">        L_i1i2 <span class="built_in">=</span> A(i2,i1) / A(i1,i1); <span class="comment">%更新L_ik</span></span><br><span class="line">        <span class="comment">% 更新每一行从第i个元素开始后的所有元素</span></span><br><span class="line">        for j <span class="built_in">=</span> i1+<span class="number">1</span>:A_col</span><br><span class="line">            A(i2,j) <span class="built_in">=</span> A(i2,j) -  L_i1i2*A(i1,j); <span class="comment">% 更新a(i2,j)</span></span><br><span class="line">        end</span><br><span class="line">        b(i2) <span class="built_in">=</span> b(i2) - b(i1)*L_i1i2; <span class="comment">% 更新b(i2)</span></span><br><span class="line">        A(i2,<span class="number">1</span>) <span class="built_in">=</span> <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">x(A_row) <span class="built_in">=</span> b(A_row)/A(A_row,A_col);</span><br><span class="line"></span><br><span class="line">for i1 <span class="built_in">=</span> A_row-<span class="number">1</span>:-<span class="number">1</span>:<span class="number">1</span></span><br><span class="line">    sum_temp <span class="built_in">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    for j <span class="built_in">=</span> i1+<span class="number">1</span>:A_col</span><br><span class="line">        sum_temp <span class="built_in">=</span> sum_temp + A(i1,j)*x(j);</span><br><span class="line">    end</span><br><span class="line">    x(i1) <span class="built_in">=</span> (b(i1) - sum_temp)/A(i1,i1);</span><br><span class="line">end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">% 命令行输入</span></span><br><span class="line"><span class="comment">% assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[0 0 0])</span></span><br><span class="line"><span class="comment">% assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[1 1 1])</span></span><br></pre></td></tr></table></figure>
+    <div class="post-content no-indent">
+        <h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
+<li>输入矩阵A,常数项b,初始迭代向量x1，若迭代后向量x2，容许误差error</li>
+<li>x(i)=(b(i)-∑(a(i,j)*x(j)))/a(i,i)  j!=i1</li>
+<li>x2-x1的每一项都小于error，输出x2，结束程序；否则转步骤2</li>
+</ol>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% assignment4.m</span></span><br><span class="line"></span><br><span class="line">function [x2] <span class="built_in">=</span> assignment4(A,b,x1,error)</span><br><span class="line"><span class="comment">%  inputs:</span></span><br><span class="line"><span class="comment">%         A:系数矩阵，维度为n*n</span></span><br><span class="line"><span class="comment">%         b:载荷矩阵，维度为n*1</span></span><br><span class="line"><span class="comment">%         error:容许误差</span></span><br><span class="line"><span class="comment">%  outputs:</span></span><br><span class="line"><span class="comment">%         x2:迭代后矩阵，维度n*1</span></span><br><span class="line"><span class="comment">%         x1:迭代前矩阵，维度n*1</span></span><br><span class="line"></span><br><span class="line">[A_row,A_col] <span class="built_in">=</span> size(A);</span><br><span class="line">e<span class="built_in">=</span><span class="number">1</span>;</span><br><span class="line">x2<span class="built_in">=</span>x1;</span><br><span class="line"></span><br><span class="line">while e&gt;error</span><br><span class="line">    for i1<span class="built_in">=</span><span class="number">1</span>:A_row</span><br><span class="line">        x2(i1)<span class="built_in">=</span>b(i1);</span><br><span class="line">        for i2<span class="built_in">=</span><span class="number">1</span>:A_col</span><br><span class="line">            <span class="built_in">if</span> i1~<span class="built_in">=</span>i2</span><br><span class="line">                x2(i1)<span class="built_in">=</span>x2(i1)-x2(i2)*A(i1,i2);</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        x2(i1)<span class="built_in">=</span>x2(i1)/A(i1,i1);</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    e<span class="built_in">=</span>x2(<span class="number">1</span>)-x1(<span class="number">1</span>);</span><br><span class="line">    for i1<span class="built_in">=</span><span class="number">2</span>:A_row</span><br><span class="line">        <span class="built_in">if</span> x2(i1)-x1(i1)&gt;e</span><br><span class="line">            e<span class="built_in">=</span>x2(i1)-x1(i1);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    x1<span class="built_in">=</span>x2;</span><br><span class="line">end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">%assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[0 0 0],0.0001)</span></span><br><span class="line"><span class="comment">%assignment4([10 -1 -2; -1 10 -2; -1 -1 5],[7.2 8.3 4.2],[1 1 1],0.0001)</span></span><br></pre></td></tr></table></figure>
         
             <div class="donate-container">
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/donate.jpg">
